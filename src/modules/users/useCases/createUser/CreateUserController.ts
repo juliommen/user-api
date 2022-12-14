@@ -9,13 +9,14 @@ class CreateUserController {
   handle(request, response): Response {
     const { name, email } = request.body;
     try {
-      this.createUserUseCase.execute({ email, name });
+      return response
+        .status(201)
+        .json(this.createUserUseCase.execute({ email, name }));
     } catch (error) {
       return response
         .status(400)
         .json({ error: "Could not create user. Email has already been taken" });
     }
-    return response.status(201).send();
   }
 }
 

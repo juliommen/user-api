@@ -7,14 +7,12 @@ class ShowUserProfileController {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   handle(request, response): Response {
-    const user_id = request.params;
-    let user;
+    const { user_id } = request.params;
     try {
-      user = this.showUserProfileUseCase.execute({ user_id });
+      return response.json(this.showUserProfileUseCase.execute({ user_id }));
     } catch (error) {
-      return response.status(400).json({ error: error.message });
+      return response.status(404).json({ error: error.message });
     }
-    return response.json(user);
   }
 }
 

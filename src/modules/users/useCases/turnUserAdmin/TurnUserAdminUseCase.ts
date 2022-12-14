@@ -13,7 +13,7 @@ class TurnUserAdminUseCase {
     if (!user) {
       throw new Error("Invalid user id.");
     }
-    return user;
+    return this.usersRepository.turnAdmin(user);
   }
 }
 
